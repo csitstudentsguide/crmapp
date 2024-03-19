@@ -1,3 +1,5 @@
-h1 {
-    color: blueviolet;
+.form-layout {
+    border-radius: 15px;
+    border-color: #222;
+    width: 500px;
 }
