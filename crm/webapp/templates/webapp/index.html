@@ -1,26 +1,24 @@
 {% extends 'webapp/base.html' %}
 
 {% block title %}
-<title>WebApp Home</title>
+    <title>WebApp Home</title>
 {%endblock%}
 
 {% block content %}
-<body>
-    
-    <br>
-    <br>
 
-    <div class="text-center">
+    <div class="container text-center">  
         
         <h3>ProjectX...Management at it's finest</h3>
+        
         <br>
 
         <h5>Keep track of your record effectively</h5>
 
+        <br>
         <hr>
         <br>
 
         <a class="btn btn-primary" type="button" href="{% url 'register' %}">Create your account</a>
     </div>
-</body>
+    
 {% endblock %}

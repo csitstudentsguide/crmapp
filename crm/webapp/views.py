@@ -3,6 +3,8 @@ from .forms import UserCreationForm, LoginForm
 
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 # Home page
@@ -18,7 +20,7 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            #return redirect()
+            return redirect('my-login')
     
     context = {'form': form}
     
@@ -39,9 +41,21 @@ def my_login(request):
 
             if user is not None:
                 auth.login(request, user)
-                #return redirect()
+                return redirect('dashboard')
     
     context = {'form': form}
-    return render(request, 'webapp/my-login.html', context)
+    return render(request, 'webapp/my-login.html', context)     
 
-        
+
+# - User logout
+def user_logout(request):
+    
+    auth.logout(request)
+
+    return redirect('my-login')
+
+# - User dashboard
+@login_required(login_url='my-login')
+def dashboard(request):
+    return render(request, 'webapp/dashboard.html')
+
