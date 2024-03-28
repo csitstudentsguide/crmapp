@@ -5,46 +5,56 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h2 class="h2 mt-3">Dashboard</h2>
+  <div class="container">
+    <h2 class="h2 mt-3">Dashboard</h2>
 
-        <hr>
+    <hr>
 
-        <h5>Wecome, {{user}}</h5>   
+    <h5>Wecome, {{user}}</h5>
 
-        <br>      
+    <hr>
 
-        <table class="table table-striped">
-            <thead>
-              <tr class="table-primary">
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Address</th>
-                <th scope="col">City</th>
-                <th scope="col">State</th>
-                <th scope="col">Country</th>
-              </tr>
-            </thead>
-            <tbody>
-                {% if records %}
-                {% for record in records %}
-              <tr>                               
+    <a type="button" class="btn my-3 btn-secondary" href="{% url 'add-record' %}">Add record</a>
 
-                <td>{{record.id}}</td>
-                <td>{{record.first_name}} {{record.last_name}}</td>
-                <td>{{record.email}}</td>
-                <td>{{record.phone}}</td>
-                <td>{{record.address}}</td>
-                <td>{{record.city}}</td>
-                <td>{{record.state}}</td>
-                <td>{{record.country}}</td>                                      
-                
-              </tr>
-              {% endfor %}
-              {% endif %}
-            </tbody>
-          </table>
-    </div>
+    &nbsp; &nbsp; &nbsp;
+
+    <a type="button" class="btn my-3 btn-secondary" href="{% url 'del-record' %}">Delete record</a>
+
+    &nbsp; &nbsp; &nbsp;
+
+    <a type="button" class="btn my-3 btn-secondary" href="{% url '' %}">Update record</a>    
+
+    <table class="table table-striped">
+      <thead>
+        <tr class="table-primary">
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Address</th>
+          <th scope="col">City</th>
+          <th scope="col">State</th>
+          <th scope="col">Country</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if records %}
+        {% for record in records %}
+        <tr>
+
+          <td>{{record.id}}</td>
+          <td>{{record.first_name}} {{record.last_name}}</td>
+          <td>{{record.email}}</td>
+          <td>{{record.phone}}</td>
+          <td>{{record.address}}</td>
+          <td>{{record.city}}</td>
+          <td>{{record.state}}</td>
+          <td>{{record.country}}</td>
+
+        </tr>
+        {% endfor %}
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
 {% endblock %}

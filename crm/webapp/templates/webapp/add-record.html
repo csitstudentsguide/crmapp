@@ -1,0 +1,28 @@
+{% extends 'webapp/base.html' %}
+
+{% block title %}
+    <title>ProjectX</title>
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    {% if err %}
+    <div class="container text-center mt-3">
+        <div class="alert alert-danger" role="alert">
+            Use another email ID, it is used!
+        </div>
+    </div>    
+    {% endif %}
+
+    <div class="container form-control form-layout mt-3 p-5">
+        <form action="" method="post">
+
+            {% csrf_token %}
+            {{form | crispy}}
+
+            <input class="btn btn-primary btn-block w-100 p-2" type="submit" value="Add record">
+        </form>
+    </div>
+{% endblock %}
