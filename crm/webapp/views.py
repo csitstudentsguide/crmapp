@@ -66,42 +66,35 @@ def dashboard(request):
 # -  Add record
 @login_required(login_url='my-login')
 def add_record(request):
+    duplicate_email_found = False
     form = AddRecordForm()
 
     if request.method == 'POST':
         form = AddRecordForm(request.POST)        
 
-        if form.is_valid():
-            email_id = form.cleaned_data['email']      
-            print('entered email', email_id)      
-            all_records = Record.objects.all()
-            all_email = all_records.values_list('email')
-            print('all emails', all_email)
+        if form.is_valid():            
+            email_id = form.cleaned_data['email']
 
-            if len(all_email) > 0:
-                err = False
-                found = False
-                for mail in all_email:
-                    print('mail in loop', mail[0])
-                    if mail[0] == email_id:                                        
-                        print('found', email_id)   
-                        found = True     
-                        break
-                if found is False:
-                    form.save()
-                else:
-                    #raise ValidationError('Email address repeat') 
-                    err = True
-                    return render(request, 'webapp/add-record.html', {'form': form, 'err': err})   
-            else:
-                form.save()        
-                return redirect('dashboard')           
-            
-        return redirect('dashboard')            
-                    
-    else:
-        return render(request, 'webapp/add-record.html', {'form': form})
-    
+            if not (Record.objects.filter(email=email_id).exists()):
+                form.save()
+                return redirect('dashboard')                
+            else:                
+                duplicate_email_found = True
+                return render(request, 'webapp/add-record.html', {'form': form, 'duplicate_email_found': duplicate_email_found})
+    else:                       
+        return render(request, 'webapp/add-record.html', {'form': form})   
+
+
+
+
+
+
+
+
+
+
+
+
 # -  Delete record
 @login_required(login_url='my-login')
 def del_record(request):
