@@ -18,6 +18,10 @@
         </li>
 
         <li class="nav-item">
+          <a class="nav-link" href="{% url 'blog' %}">Blog</a>
+        </li>
+
+        <li class="nav-item">
           <a class="nav-link" href="{% url 'user-logout' %}">Logout</a>
         </li>
 
@@ -25,17 +29,19 @@
 
         <li class="nav-item">
           <a class="nav-link" href="{% url 'register' %}">Register</a>
-        </li>
+        </li>        
 
         <li class="nav-item">
           <a class="nav-link" href="{% url 'my-login' %}">Login</a>
         </li>
 
-        {% endif %}
-
         <li class="nav-item">
           <a class="nav-link" href="{% url 'blog' %}">Blog</a>
         </li>
+
+        {% endif %}
+
+        
 
       </ul>
     </div>
